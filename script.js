@@ -43,9 +43,6 @@ function atm() {
                 break;
             }
           }
-    
-          
-         
 
 const account = {
     accountName: "Yana",
@@ -56,52 +53,51 @@ const account = {
 // this function should display the total amount of the account to the user
     getBalance() {
         alert(this.balance)
+
     },
 // - deposit, also a function
 // this function should be able to deposit money onto the balance of the account
     deposit(amount) {
-        this.balance = this.balance + parseFloat(amount) 
+        if (amount != Number(amount) && amount) {
+            this.accountError("Please enter a valid number.");
+        } else if (amount === "") {
+            this.accountError("Please enter a number");
+        
+        } else if (amount < 0) {
+            this.accountError("Please enter a positive number.");
+        
+        } else {
+            this.balance = this.balance + parseFloat(amount) 
+            
+        }
     },
-// - withdrawal, also a function
-// this function should be able do withdrawal money from the balance of the account
     withdraw(amount) {
-        this.balance = this.balance - parseFloat(amount)
+        if (amount != Number(amount) && amount) {
+            this.accountError("Please enter a valid number.");
+        
+        } else if (amount > this.balance) {
+            this.accountError("Unable to withdraw an amount larger than your balance");
+        
+        } else if (amount === "") {
+            this.accountError("Please enter a number");
+        
+        } else if (amount < 0) {
+            this.accountError("Please enter a positive number.");
+        
+        } else {
+            this.balance = this.balance - parseFloat(amount)
+            
+        } 
+    
     },
-// - getAccountName, function as well
-// this function should dispaly the account holders name to the user
+
     getAccountName() {
         alert(this.accountName)
     },
-    accountError() {
+    accountError(errorMessage) {
+        alert (`Account error: ${errorMessage}`)
 
     }
-
-// - accountError, same as above function!
-// this one is a bit tricky... it's up to you to figure out how or what you should use this for.
-// HINT: it's more a thinking poblem than a technical problem :)
-
 }; 
 
-
-
-
 atm();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
